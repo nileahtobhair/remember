@@ -18,14 +18,14 @@ export {
   lt,
   inRange,
   min,
-  max,
+  max
 } from "date-arithmetic";
 
 const MILLI = {
   seconds: 1000,
   minutes: 1000 * 60,
   hours: 1000 * 60 * 60,
-  day: 1000 * 60 * 60 * 24,
+  day: 1000 * 60 * 60 * 24
 };
 
 const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
@@ -33,7 +33,7 @@ const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 export function monthsInYear(year) {
   let date = new Date(year, 0, 1);
 
-  return MONTHS.map((i) => dates.month(date, i));
+  return MONTHS.map(i => dates.month(date, i));
 }
 
 export function firstVisibleDay(date, localizer) {

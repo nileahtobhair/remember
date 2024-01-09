@@ -1,95 +1,225 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 
-import { Calendar, Views, dateFnsLocalizer } from "react-big-calendar";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import defaultEvents from "./events";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import { parseISO } from "date-fns";
+import {
+  parseISO,
+  isFuture,
+  isBefore,
+  isAfter,
+  addYears,
+  isEqual
+} from "date-fns";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
-import enUS from "date-fns/locale/en-US";
+
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
 
 const locales = {
-  "en-US": enUS,
+  "en-US": require("date-fns/locale/en-US")
 };
 
-// let allViews = Object.keys(Views).map((k) => Views[k]);
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  borderRadius: "4px",
+  bgcolor: "background.paper",
+  // border: '2px solid #000',
+  boxShadow: 24,
+  p: 4
+};
+
+const ModalC = ({ open, handleClose, activeDate, addEvent }) => {
+  const [eventName, setEventName] = useState("");
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <h3>Add event</h3>
+        <p>Add an event here to trigger a reminder</p>
+        <p>Date</p>
+        {activeDate && <p>{activeDate.toString()}</p>}
+        <p>Event name</p>
+        <input
+          type="text"
+          value={eventName}
+          onChange={e => setEventName(e.target.value)}
+        />
+        {/* <p>Is recurring?</p>
+        <p>Remind me</p> */}
+        <button
+          onClick={() => {
+            addEvent({
+              event: {
+                title: eventName,
+                allDay: false,
+                start: activeDate,
+                end: activeDate
+              }
+            });
+            setEventName("");
+          }}
+        >
+          {"Submit"}
+        </button>
+      </Box>
+    </Modal>
+  );
+};
 
 const localizer = dateFnsLocalizer({
   format,
   parse,
   startOfWeek,
   getDay,
-  locales,
+  locales
 });
 
-let Basic = ({ localizer, events }) => (
+let Basic = ({ localizer, events, handleSelectSlot }) => (
   <Calendar
     events={events}
     views={["month", "week"]}
-    // step={60}
     showMultiDayTimes
-    // max={dates.add(dates.endOf(new Date(2015, 17, 1), "day"), -1, "hours")}
     defaultDate={new Date()}
-    // components={{
-    //   timeSlotWrapper: ColoredDateCellWrapper,
-    // }}
     localizer={localizer}
+    selectable={false}
+    onSelectSlot={handleSelectSlot}
   />
 );
 
-const EventsLists = ({ events, onClick }) => {
+const displayEventsFilter = eventsList => {
+  return eventsList.slice(0, 5);
+};
+
+const EventsLists = ({ events, onClick, handleOpen }) => {
   return (
     <section className="events--list--container">
-      {events.map((event) => {
+      <h4>Upcoming events</h4>
+
+      {displayEventsFilter(events).map(event => {
         return (
-          <div className="single--event">
-            <h4>{event.title}</h4>
-            {event.start && <p>{format(parseISO(event.start), "dd MMM yy")}</p>}
+          <div key={event.title} className="single--event">
+            <h6>{event.title}</h6>
+
+            {!isEqual(event.end, event.start) ? (
+              <p>
+                {format(event.start, "dd MMM yyyy")} -{" "}
+                {format(event.end, "dd MMM yyyy")}{" "}
+              </p>
+            ) : (
+              <p>{format(event.start, "dd MMM yyyy")} </p>
+            )}
           </div>
         );
       })}
-      <button onClick={onClick}>Clear Events</button>
+      {/* <div className="event-button-container">
+        <button onClick={onClick}>Clear Events</button>
+        <button onClick={handleOpen}>Open modal</button>
+      </div> */}
     </section>
   );
 };
 
 function App() {
+  const orderEvents = eventsList => {
+    // TODO do this better & neater
+    // will only work for one year after manually entered date
+    for (let i = 0; i < eventsList.length; i++) {
+      const active = eventsList[i];
+      if (!isFuture(active.end) && active.recurring) {
+        eventsList[i].start = addYears(active.start, 1);
+        eventsList[i].end = addYears(active.end, 1);
+      }
+    }
+
+    const filtered = eventsList
+      .filter(event => {
+        return isFuture(event.end) || event.recurring;
+      })
+      .sort((a, b) => {
+        return isBefore(b.start, a.start) ? 1 : -1;
+      });
+    return filtered;
+  };
+
   const [events, setEvents] = useState(() => {
-    const saved = localStorage.getItem("rememberevents");
-    const initialValue = JSON.parse(saved);
-    return initialValue || defaultEvents;
+    // const saved = localStorage.getItem("rememberevents");
+    // const initialValue = JSON.parse(saved);
+    return orderEvents(defaultEvents);
   });
+
+  const [open, setOpen] = useState(false);
+  const [activeDate, setActiveDate] = useState(null);
+  const handleOpen = props => {
+    console.log("handle open props", props);
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
 
   useEffect(() => {
     if (events && events.length > 0) {
-      localStorage.setItem("rememberevents", JSON.stringify(events));
+      const ordered = orderEvents(events);
+      console.log("events", events);
+      console.log("ordered", ordered);
+      // localStorage.setItem("rememberevents", JSON.stringify(ordered));
     }
   }, [events]);
 
-  const clearEvents = () => {
-    setEvents([]);
-    localStorage.setItem("rememberevents", JSON.stringify([]));
-    localStorage.removeItem("rememberevents");
+  const addEvent = ({ event }) => {
+    setEvents([...events, event]);
+    setOpen(false);
+    setActiveDate(null);
+  };
+
+  const handleSlotSelect = props => {
+    console.log("start", props.start);
+    setActiveDate(props.start);
+    setOpen(true);
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1> Remember </h1>
+        <h1> Lawlor family calendar </h1>
       </header>
+      <ModalC
+        addEvent={addEvent}
+        events={events}
+        activeDate={activeDate}
+        open={open}
+        handleClose={handleClose}
+      />
       <section className="main--container">
         {events && events.length > 0 && (
           <>
-            <>
-              <EventsLists events={events} onClick={(e) => clearEvents()} />
-            </>
+            <EventsLists
+              handleOpen={handleOpen}
+              events={events}
+              // onClick={e => clearEvents()}
+            />
             <div className="calendar--container">
-              <Basic localizer={localizer} events={events} />
+              <Basic
+                localizer={localizer}
+                events={events}
+                handleSelectSlot={handleSlotSelect}
+              />
             </div>
           </>
         )}
