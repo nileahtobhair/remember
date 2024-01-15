@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+// import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import defaultEvents from "./events";
@@ -63,17 +64,17 @@ function App() {
     return filtered;
   };
 
-  const [events, setEvents] = useState(() => {
+  const [events] = useState(() => {
     return orderEvents(defaultEvents);
   });
 
-  const [activeDate, setActiveDate] = useState(null);
+  const [setActiveDate] = useState(null);
 
-  useEffect(() => {
-    if (events && events.length > 0) {
-      const ordered = orderEvents(events);
-    }
-  }, [events]);
+  // useEffect(() => {
+  //   if (events && events.length > 0) {
+  //     const ordered = orderEvents(events);
+  //   }
+  // }, [events]);
 
   const handleSlotSelect = props => {
     setActiveDate(props.start);
