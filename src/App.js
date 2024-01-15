@@ -6,22 +6,13 @@ import defaultEvents from "./events";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import {
-  parseISO,
-  isFuture,
-  isBefore,
-  isAfter,
-  addYears,
-  isEqual
-} from "date-fns";
+import { isFuture, isBefore, addYears, isEqual } from "date-fns";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 const locales = {
@@ -36,7 +27,6 @@ const style = {
   width: 400,
   borderRadius: "4px",
   bgcolor: "background.paper",
-  // border: '2px solid #000',
   boxShadow: 24,
   p: 4
 };
@@ -197,7 +187,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1> Lawlor family calendar </h1>
+        <h1> Lawlor familys calendar </h1>
       </header>
       <ModalC
         addEvent={addEvent}
