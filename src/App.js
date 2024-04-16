@@ -1,30 +1,38 @@
-import React, { useState } from "react";
-// import React, { useEffect, useState } from "react";
+import React, { useState, useCallback } from "react";
+
 import "./App.css";
 
 import defaultEvents from "./events";
 
-import "react-big-calendar/lib/css/react-big-calendar.css";
-
-import { isFuture, isBefore, addYears, isEqual } from "date-fns";
+import {
+  isFuture,
+  isBefore,
+  // addYears,
+  isEqual,
+  startOfMonth,
+  isAfter
+} from "date-fns";
 import format from "date-fns/format";
 
 import EventCalendar from "./components/Calendar";
 
 const siteTitle = `Lawlor family calendar`;
+const subTitle = "Niamh wanted to get rid of facebook.";
 
-const displayEventsFilter = eventsList => {
-  return eventsList.slice(0, 5);
-};
-
-const EventsLists = ({ events }) => {
+const EventsLists = ({ events, onClick }) => {
   return (
     <section className="events--list--container">
       <h4>Upcoming events</h4>
 
-      {displayEventsFilter(events).map(event => {
+      {events.map(event => {
         return (
-          <div key={event.title} className="single--event">
+          <div
+            key={event.title}
+            className="single--event"
+            onClick={() => {
+              return onClick(event.start);
+            }}
+          >
             <h6>{event.title}</h6>
 
             {!isEqual(event.end, event.start) ? (
@@ -43,20 +51,14 @@ const EventsLists = ({ events }) => {
 };
 
 function App() {
-  const orderEvents = eventsList => {
-    // TODO do this better & neater
-    // will only work for one year after manually entered date
-    for (let i = 0; i < eventsList.length; i++) {
-      const active = eventsList[i];
-      if (!isFuture(active.end) && active.recurring) {
-        eventsList[i].start = addYears(active.start, 1);
-        eventsList[i].end = addYears(active.end, 1);
-      }
-    }
+  const [date, setDate] = useState(new Date());
 
+  const onNavigate = useCallback(newDate => setDate(newDate), [setDate]);
+
+  const orderEvents = eventsList => {
     const filtered = eventsList
       .filter(event => {
-        return isFuture(event.end) || event.recurring;
+        return isAfter(event.end, startOfMonth(new Date())) || event.recurring;
       })
       .sort((a, b) => {
         return isBefore(b.start, a.start) ? 1 : -1;
@@ -68,30 +70,34 @@ function App() {
     return orderEvents(defaultEvents);
   });
 
-  const [setActiveDate] = useState(null);
-
-  // useEffect(() => {
-  //   if (events && events.length > 0) {
-  //     const ordered = orderEvents(events);
-  //   }
-  // }, [events]);
-
-  const handleSlotSelect = props => {
-    setActiveDate(props.start);
-  };
+  const [upComingEvents] = useState(() => {
+    const filtered = defaultEvents
+      .filter(event => {
+        return isFuture(event.end);
+      })
+      .sort((a, b) => {
+        return isBefore(b.start, a.start) ? 1 : -1;
+      });
+    return filtered.slice(0, 5);
+  });
 
   return (
     <div className="App">
       <header className="App-header">
         <h1> {siteTitle} </h1>
+        <h3> {subTitle} </h3>
       </header>
       <section className="main--container">
         {events && events.length > 0 && (
           <>
-            <EventsLists events={events} />
+            <EventsLists
+              onClick={date => onNavigate(date)}
+              events={upComingEvents}
+            />
             <EventCalendar
+              date={date}
               events={events}
-              handleDateSelection={handleSlotSelect}
+              onNavigate={onNavigate}
             />
           </>
         )}

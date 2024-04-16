@@ -10,6 +10,10 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 
+import { getYear } from "date-fns";
+
+// const currentYear = getYear(new Date());
+
 const locales = {
   "en-US": require("date-fns/locale/en-US")
 };
@@ -22,25 +26,27 @@ const localizer = dateFnsLocalizer({
   locales
 });
 
-let Basic = ({ localizer, events, handleSelectSlot }) => (
+let Basic = ({ localizer, events, date, onNavigate }) => (
   <Calendar
     events={events}
     views={["month", "week"]}
     showMultiDayTimes
-    defaultDate={new Date()}
+    date={date}
     localizer={localizer}
-    selectable={false}
-    onSelectSlot={handleSelectSlot}
+    selectable={true}
+    onNavigate={onNavigate}
+    // max={new Date(2025, 1, 1)}
   />
 );
 
-function EventCalendar({ handleDateSelection, events }) {
+function EventCalendar({ events, onNavigate, date }) {
   return (
     <div className="calendar--container">
       <Basic
         localizer={localizer}
         events={events}
-        handleSelectSlot={handleDateSelection}
+        onNavigate={onNavigate}
+        date={date}
       />
     </div>
   );

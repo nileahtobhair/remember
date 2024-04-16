@@ -10,7 +10,7 @@
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
     "date-arithmetic": "^4.1.0",
-    "date-fns": "^3.2.0",
+    "date-fns": "^3.3.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.8.6",
     "react-dom": "^18.2.0",
