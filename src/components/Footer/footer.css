@@ -1,0 +1,31 @@
+.footer--container {
+  width: 100%;
+  background: #735bf2;
+  padding: 40px 20px;
+  color: #fff;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer--container ul {
+  display: flex;
+  width: 90%;
+  align-items: flex-start;
+  flex-direction: column;
+  font-family: "Fraunces", serif;
+}
+
+.footer--container ul li {
+  margin: 5px 0;
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 599px) {
+  .footer--container {
+    padding: 20px 0;
+  }
+}

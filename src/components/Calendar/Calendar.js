@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "./calendar.css";
 
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 
@@ -9,10 +9,6 @@ import format from "date-fns/format";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
-
-import { getYear } from "date-fns";
-
-// const currentYear = getYear(new Date());
 
 const locales = {
   "en-US": require("date-fns/locale/en-US")
@@ -41,14 +37,19 @@ let Basic = ({ localizer, events, date, onNavigate }) => (
 
 function EventCalendar({ events, onNavigate, date }) {
   return (
-    <div className="calendar--container">
-      <Basic
-        localizer={localizer}
-        events={events}
-        onNavigate={onNavigate}
-        date={date}
-      />
-    </div>
+    <>
+      <div className="calendar--container">
+        <h4> Your events calendar </h4>
+        <div className="calendar">
+          <Basic
+            localizer={localizer}
+            events={events}
+            onNavigate={onNavigate}
+            date={date}
+          />
+        </div>
+      </div>
+    </>
   );
 }
 
