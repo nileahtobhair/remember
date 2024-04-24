@@ -1,8 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
+import parse from "date-fns/parse";
 // import { isBefore, startOfMonth, isAfter } from "date-fns";
 
 import defaultEvents from "../events";
-
 export const EventsContext = createContext(null);
 export const EventsDispatchContext = createContext(null);
 
@@ -33,18 +33,20 @@ function eventsReducer(events, action) {
   switch (action.type) {
     case "added": {
       return [
-        ...events,
         {
           id: action.id,
-          text: action.text,
-          done: false
-        }
+          title: action.title,
+          start: parse(action.date, "yyyy-M-dd", new Date()),
+          end: parse(action.date, "yyyy-M-dd", new Date()),
+          recurring: action.recurring
+        },
+        ...events
       ];
     }
     case "changed": {
       return events.map(t => {
-        if (t.id === action.events.id) {
-          return action.event;
+        if (t.id === action.id) {
+          return action;
         } else {
           return t;
         }

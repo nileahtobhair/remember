@@ -1,10 +1,12 @@
 .header--container {
   width: 100%;
   padding: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 65px;
   display: flex;
   justify-content: center;
   font-family: system-ui, -apple-system, "Inter";
+  cursor: pointer;
+  background-color: #fff;
 }
 
 .header-logo {
