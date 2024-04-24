@@ -7,6 +7,8 @@ import Header from "./components/Header";
 import Events from "./components/Events";
 import Footer from "./components/Footer";
 
+import { EventsProvider } from "./providers/events";
+
 function App() {
   return (
     <Router>
@@ -20,9 +22,11 @@ function App() {
 const IndexPage = () => {
   return (
     <div className="App">
-      <Header />
-      <Events />
-      <Footer />
+      <EventsProvider>
+        <Header />
+        <Events />
+        <Footer />
+      </EventsProvider>
     </div>
   );
 };
