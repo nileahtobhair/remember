@@ -57,13 +57,22 @@ const EventsList = ({ onClick }) => {
           </div>
         );
       })}
-      <Button
-        onClick={() => {
-          navigate("/event/new");
-        }}
-        type="primary"
-        text="Create new event"
-      />
+      <div className="button-container">
+        <Button
+          onClick={() => {
+            navigate("/events");
+          }}
+          type="link"
+          text="View all events..."
+        />
+        <Button
+          onClick={() => {
+            navigate("/event/new");
+          }}
+          type="primary"
+          text="Create new event"
+        />
+      </div>
     </section>
   );
 };

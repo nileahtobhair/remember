@@ -1,11 +1,17 @@
 .calendar--container {
-  max-width: 100%;
-  min-width: 65%;
+  width: 70%;
   margin-bottom: 60px;
   margin-left: 2rem;
 }
+
+.calendar-outline {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 .calendar {
-  margin-top: 40px;
+  margin-top: 30px;
+  width: 90%;
 }
 
 /* override default calendar styles */

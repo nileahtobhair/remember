@@ -110,7 +110,7 @@ const events = [
     id: 13
   },
   {
-    title: "Mam and Dad Anniversary 💍",
+    title: "Mam & Dad Anniversary 💍",
     allDay: true,
     start: parse(`${currentYear}-08-19`, "yyyy-M-dd", new Date()),
     end: parse(`${currentYear}-08-19`, "yyyy-M-dd", new Date()),

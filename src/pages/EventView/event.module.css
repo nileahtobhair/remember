@@ -1,14 +1,13 @@
 .container {
   display: flex;
-  width: 90%;
+  width: 100%;
   padding: 20px 0;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .eventContainer {
   display: flex;
-  width: 90%;
-  margin-left: 5%;
+  width: 70%;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -25,4 +24,19 @@
 
 .editButtons button {
   margin-left: 15px;
+}
+
+.calendar {
+  width: 400px;
+}
+
+.eventContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  text-align: left;
+  width: 45%;
+  margin-top: 80px;
 }

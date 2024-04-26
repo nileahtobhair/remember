@@ -1,10 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./event.module.css";
 
 import Button from "../../components/Button";
-import { useNavigate } from "react-router-dom";
+import CalendarPreview from "../../components/CalendarPreview";
 import EventsList from "../../components/EventsList";
 
 import { useEvents, useEventsDispatch } from "../../providers/events";
@@ -21,7 +21,7 @@ const EventCreationView = () => {
 
   return (
     <section className={`${styles.container}`}>
-      <EventsList onClick={() => null} />
+      {/* <EventsList onClick={() => null} /> */}
       <div className={`${styles.eventContainer}`}>
         {event && (
           <>
@@ -54,8 +54,15 @@ const EventCreationView = () => {
                 />
               </div>
             </div>
-            <h4>{event.title}</h4>
-            <p>{event.start.toString()}</p>
+            <div className={`${styles.eventContent}`}>
+              <div className={`${styles.calendar}`}>
+                <CalendarPreview event={event} />
+              </div>
+              <div className={`${styles.text}`}>
+                <h4>{event.title}</h4>
+                <p>{event.start.toString()}</p>
+              </div>
+            </div>
           </>
         )}
       </div>

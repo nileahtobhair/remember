@@ -40,13 +40,15 @@ function EventCalendar({ events, onNavigate, date }) {
     <>
       <div className="calendar--container">
         <h4> Your events calendar </h4>
-        <div className="calendar">
-          <Basic
-            localizer={localizer}
-            events={events}
-            onNavigate={onNavigate}
-            date={date}
-          />
+        <div className="calendar-outline">
+          <div className="calendar">
+            <Basic
+              localizer={localizer}
+              events={events}
+              onNavigate={onNavigate}
+              date={date}
+            />
+          </div>
         </div>
       </div>
     </>

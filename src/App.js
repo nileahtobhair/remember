@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 
 import EventView from "./pages/EventView";
 import EventEdit from "./pages/EventEdit";
+import EventList from "./pages/EventList";
 import EventCreate from "./pages/EventCreation";
 
 import { EventsProvider } from "./providers/events";
@@ -30,6 +31,7 @@ function App() {
             path="/event/:eventId/edit"
             element={<EventEditPage />}
           />
+          <Route exact path="/events" element={<EventsPage />} />
         </Routes>
       </Router>
     </EventsProvider>
@@ -41,6 +43,16 @@ const IndexPage = () => {
     <div className="App">
       <Header />
       <Events />
+      <Footer />
+    </div>
+  );
+};
+
+const EventsPage = () => {
+  return (
+    <div className="App">
+      <Header />
+      <EventList />
       <Footer />
     </div>
   );
