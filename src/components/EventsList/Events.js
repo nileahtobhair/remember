@@ -44,7 +44,7 @@ const EventsList = ({ onClick, events = [], calendarId }) => {
 
             <Button
               onClick={() => {
-                navigate(`/event/${event.id}`);
+                navigate(`/calendar/${calendarId}/event/${event.id}`);
               }}
               type="link"
               text="More info..."

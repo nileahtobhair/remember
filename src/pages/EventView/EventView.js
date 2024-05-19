@@ -4,12 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import styles from "./event.module.css";
 
 import Button from "../../components/Button";
+import CalendarInfo from "../../components/CalendarInfo";
 import CalendarPreview from "../../components/CalendarPreview";
 import EventsList from "../../components/EventsList";
 
 import { useEvents, useEventsDispatch } from "../../providers/events";
+import { useCalendars, useCalendarsDispatch } from "../../providers/calendars";
 
-const EventCreationView = () => {
+const EventView = () => {
+  const { calendarId } = useParams();
+  const calendars = useCalendars();
   const events = useEvents();
   const { eventId } = useParams();
   const navigate = useNavigate();
@@ -19,8 +23,11 @@ const EventCreationView = () => {
     return event.id === parseInt(eventId);
   });
 
+  const calendar = calendars.find(cal => cal.id === parseInt(calendarId));
+
   return (
     <section className={`${styles.container}`}>
+      <CalendarInfo calendar={calendar} edit={false} />
       <div className={`${styles.eventContainer}`}>
         {event && (
           <>
@@ -37,7 +44,7 @@ const EventCreationView = () => {
                   type="primary"
                   text={"Edit"}
                   onClick={() => {
-                    navigate(`/event/${event.id}/edit`);
+                    navigate(`/calendar/${calendar.id}/event/${event.id}/edit`);
                   }}
                 />
                 <Button
@@ -69,4 +76,4 @@ const EventCreationView = () => {
   );
 };
 
-export default EventCreationView;
+export default EventView;

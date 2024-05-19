@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import "./App.css";
+import "./App.scss";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -33,10 +33,14 @@ function App() {
               path="/calendar/:calendarId/event/new"
               element={<EventCreationPage />}
             ></Route>
-            <Route exact path="/event/:eventId" element={<EventPage />}></Route>
             <Route
               exact
-              path="/event/:eventId/edit"
+              path="/calendar/:calendarId/event/:eventId"
+              element={<EventPage />}
+            ></Route>
+            <Route
+              exact
+              path="/calendar/:calendarId/event/:eventId/edit"
               element={<EventEditPage />}
             />
             <Route exact path="/events" element={<EventsPage />} />

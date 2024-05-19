@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import styles from "./event.module.css";
+import styles from "./event.module.scss";
 
 import CalendarInfo from "../../components/CalendarInfo";
 import Button from "../../components/Button";
@@ -42,11 +42,17 @@ const EventCreationView = () => {
 
   return (
     <section className={`${styles.container}`}>
+      {/* <div className={styles.info}>
+        <h1>Create your new event</h1>
+        <p>{`Event will be added to the ${calendar.title} calendar`} </p>
+      </div> */}
       <CalendarInfo calendar={calendar} edit={false} />
 
       <div className={`${styles.formContainer}`}>
-        <h4>Create your new event</h4>
-        <p>{`Event will be added to the ${calendar.title} calendar`} </p>
+        <div className={styles.info}>
+          <h1>Create your new event</h1>
+          <p>{`Event will be added to the ${calendar.title} calendar`} </p>
+        </div>
         <form className={`${styles.form}`} onSubmit={onFormSubmit}>
           <label>Event title </label>
           <input
@@ -63,14 +69,18 @@ const EventCreationView = () => {
             min={today}
             onChange={e => setEvent({ ...event, date: e.target.value })}
           />
-          <label>Recurring event? </label>
-          <input
-            type="checkbox"
-            id="start"
-            name="event-recurring"
-            value={event.recurring}
-            onChange={e => setEvent({ ...event, recurring: !!e.target.value })}
-          />
+          <div className={styles.checkbox}>
+            <label>Recurring event? </label>
+            <input
+              type="checkbox"
+              id="start"
+              name="event-recurring"
+              value={event.recurring}
+              onChange={e =>
+                setEvent({ ...event, recurring: !!e.target.value })
+              }
+            />
+          </div>
           <Button
             className={`${styles.button}`}
             type="primary"

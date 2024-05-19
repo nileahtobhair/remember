@@ -56,6 +56,19 @@ ul {
   list-style: none;
 }
 
+label {
+  font-family: Fraunces, serif;
+}
+
+input {
+  font-family: Fraunces, serif;
+  background-color: #f0effd;
+  padding: 10px 5px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+}
+
 @keyframes logoAnimation {
   0% {
     background-position: 0% 10%;

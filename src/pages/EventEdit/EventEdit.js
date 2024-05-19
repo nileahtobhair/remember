@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import styles from "./event.module.css";
+import styles from "./event.module.scss";
 
 import Button from "../../components/Button";
-import EventsList from "../../components/EventsList";
+import CalendarInfo from "../../components/CalendarInfo";
+// import EventsList from "../../components/EventsList";
 
 import { useEvents, useEventsDispatch } from "../../providers/events";
+import { useCalendars } from "../../providers/calendars";
 
 const EventEditView = () => {
   const events = useEvents();
-  const { eventId } = useParams();
+  const calendars = useCalendars();
+  const { eventId, calendarId } = useParams();
   const navigate = useNavigate();
   const dispatch = useEventsDispatch();
 
@@ -25,17 +28,14 @@ const EventEditView = () => {
 
   const today = new Date().toISOString().split("T")[0];
 
+  const calendar = calendars.find(cal => cal.id === parseInt(calendarId));
+
+  const link = `/calender/${calendar.id}/event/${event.id}`;
   return (
     <section className={`${styles.container}`}>
-      <EventsList onClick={() => null} />
+      <Button type="link" text={"Back"} onClick={e => navigate(link)} />
+      <CalendarInfo calendar={calendar} edit={false} />
       <div className={`${styles.formContainer}`}>
-        <Button
-          type="link"
-          text={"Back"}
-          onClick={e => {
-            navigate(`/event/${event.id}`);
-          }}
-        />
         <form
           className={`${styles.form}`}
           onSubmit={e => {
@@ -44,7 +44,7 @@ const EventEditView = () => {
               type: "changed",
               ...event
             });
-            navigate(`/event/${event.id}`);
+            navigate(link);
           }}
         >
           <h4>Edit your event</h4>

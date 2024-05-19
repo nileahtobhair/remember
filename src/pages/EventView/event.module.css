@@ -1,13 +1,15 @@
 .container {
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  width: 90%;
   padding: 20px 0;
   justify-content: center;
+  max-width: 1298px;
 }
 
 .eventContainer {
   display: flex;
-  width: 70%;
+  width: 100%;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -27,7 +29,7 @@
 }
 
 .calendar {
-  width: 400px;
+  width: 600px;
 }
 
 .eventContent {
