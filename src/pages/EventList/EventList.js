@@ -1,19 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import styles from "./event.module.css";
+import styles from "./event.module.scss";
 
 import Button from "../../components/Button";
-import { useNavigate } from "react-router-dom";
-// import EventsList from "../../components/EventsList";
 
-import { useEvents, useEventsDispatch } from "../../providers/events";
+import { useEvents } from "../../providers/events";
 
 const EventListView = () => {
   const events = useEvents();
-  const { eventId } = useParams();
   const navigate = useNavigate();
-  const dispatch = useEventsDispatch();
 
   return (
     <div className={`${styles.container}`}>
@@ -22,9 +18,7 @@ const EventListView = () => {
           type="link"
           text={"Home"}
           className={styles.button}
-          onClick={() => {
-            navigate(`/`);
-          }}
+          onClick={() => navigate(`/`)}
         />
         {events.map(event => {
           return (

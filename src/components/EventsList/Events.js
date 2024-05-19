@@ -52,22 +52,6 @@ const EventsList = ({ onClick, events = [], calendarId }) => {
           </div>
         );
       })}
-      {/* <div className="button-container">
-        <Button
-          onClick={() => {
-            navigate("/events");
-          }}
-          type="link"
-          text="View all events..."
-        />
-        <Button
-          onClick={() => {
-            navigate(`/calendar/${calendarId}/event/new`);
-          }}
-          type="primary"
-          text="Create new event"
-        />
-      </div> */}
     </section>
   );
 };

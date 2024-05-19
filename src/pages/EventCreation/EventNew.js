@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./event.module.scss";
 
-import CalendarInfo from "../../components/CalendarInfo";
 import Button from "../../components/Button";
+import CalendarInfo from "../../components/CalendarInfo";
 
 import { useEvents, useEventsDispatch } from "../../providers/events";
 import { useCalendars, useCalendarsDispatch } from "../../providers/calendars";
@@ -42,10 +42,6 @@ const EventCreationView = () => {
 
   return (
     <section className={`${styles.container}`}>
-      {/* <div className={styles.info}>
-        <h1>Create your new event</h1>
-        <p>{`Event will be added to the ${calendar.title} calendar`} </p>
-      </div> */}
       <CalendarInfo calendar={calendar} edit={false} />
 
       <div className={`${styles.formContainer}`}>

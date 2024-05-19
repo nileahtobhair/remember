@@ -1,10 +1,10 @@
 import React from "react";
 
-import "./footer.css";
+import styles from "./footer.module.scss";
 
 function Footer() {
   return (
-    <footer className="footer--container">
+    <footer className={styles.container}>
       <ul>
         <li>{"T&C"}</li>
         <li>{`©${new Date().getFullYear()}rememberemember`}</li>

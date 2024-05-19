@@ -1,10 +1,10 @@
 import React from "react";
 
-import styles from "./button.module.css";
+import styles from "./button.module.scss";
 
 function Button({ text, type, onClick }) {
   return (
-    <div className="button--container">
+    <div className={styles.container}>
       <button onClick={onClick} className={`${styles.default} ${styles[type]}`}>
         {text}
       </button>

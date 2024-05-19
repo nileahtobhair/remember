@@ -1,14 +1,15 @@
 import React, { useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import EventCalendar from "../../components/Calendar";
-import { format } from "date-fns";
+
 import { useEvents } from "../../providers/events";
 import { useCalendars } from "../../providers/calendars";
-import styles from "./calendar.module.scss";
 
 import Button from "../../components/Button";
 import EventsList from "../../components/EventsList";
+import EventCalendar from "../../components/Calendar";
 import CalendarInfo from "../../components/CalendarInfo";
+
+import styles from "./calendar.module.scss";
 
 /**
  * View a single calendar and its upcoming events.

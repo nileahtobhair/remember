@@ -1,28 +1,23 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import styles from "./event.module.css";
+import styles from "./event.module.scss";
 
 import Button from "../../components/Button";
 import CalendarInfo from "../../components/CalendarInfo";
 import CalendarPreview from "../../components/CalendarPreview";
-import EventsList from "../../components/EventsList";
 
+import { useCalendars } from "../../providers/calendars";
 import { useEvents, useEventsDispatch } from "../../providers/events";
-import { useCalendars, useCalendarsDispatch } from "../../providers/calendars";
 
 const EventView = () => {
-  const { calendarId } = useParams();
-  const calendars = useCalendars();
   const events = useEvents();
-  const { eventId } = useParams();
+  const calendars = useCalendars();
+  const { eventId, calendarId } = useParams();
   const navigate = useNavigate();
   const dispatch = useEventsDispatch();
 
-  const event = events.find(event => {
-    return event.id === parseInt(eventId);
-  });
-
+  const event = events.find(event => event.id === parseInt(eventId));
   const calendar = calendars.find(cal => cal.id === parseInt(calendarId));
 
   return (

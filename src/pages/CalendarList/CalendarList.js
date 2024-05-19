@@ -3,16 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./calendar.module.scss";
 
-import {
-  useCalendars
-  // useCalendarsDispatch
-} from "../../providers/calendars";
+import { useCalendars } from "../../providers/calendars";
 
 const CalendarListView = () => {
   const calendars = useCalendars();
 
   const navigate = useNavigate();
-  // const dispatch = useCalendarsDispatch();
 
   return (
     <div className={`${styles.container}`}>

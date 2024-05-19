@@ -1,30 +1,31 @@
-.cal {
+.container {
   width: 100%;
+
   margin-top: 40px;
 }
 
 /* override default calendar styles */
-
-.rbc-calendar {
+.container :global(.rbc-calendar) {
   font-family: var(--primary-font);
 }
-.rbc-btn-group > button:first-child:not(:last-child):hover {
+
+.container :global(.rbc-btn-group > button:first-child:not(:last-child):hover) {
   cursor: pointer;
 }
 
-.rbc-toolbar-label {
+.container :global(.rbc-toolbar-label) {
   font-family: var(--header-font);
 }
 
-.rbc-btn-group > button {
+.container :global(.rbc-btn-group > button) {
   display: none;
 }
 
-.cal-container .rbc-toolbar {
+.container :global(.rbc-toolbar) {
   margin-bottom: 40px;
 }
 
-.cal-container .rbc-header {
+.container :global(.rbc-header) {
   background-color: #f0effd;
   padding: 6px 6px;
   color: #735bf2;
@@ -32,61 +33,61 @@
   font-size: 10px;
 }
 
-.cal-container .rbc-off-range-bg {
+.container :global(.rbc-off-range-bg) {
   color: #e6e6e6;
   background-color: #fff;
 }
 
-.cal-container .rbc-date-cell {
+.container :global(.rbc-date-cell) {
   padding: 8px 8px;
   font-size: 14px;
 }
-.cal-container .rbc-row-bg {
+.container :global(.rbc-row-bg) {
   color: #232428;
   background-color: #fff;
 }
 
-.cal-container .rbc-month-view {
+.container :global(.rbc-month-view) {
   border-radius: 4px;
   border: none;
   flex: unset;
   height: 225px;
 }
 
-.cal-container .rbc-header:first-child {
+.container :global(.rbc-header:first-child) {
   border-radius: 4px 0 0 0;
 }
 
-.cal-container .rbc-header:last-child {
+.container :global(.rbc-header:last-child) {
   border-radius: 0 4px 0 0;
 }
 
-.cal-container .rbc-header {
+.container :global(.rbc-header) {
   border-color: #f0effd;
 }
 
-.cal-container .rbc-day-bg + .rbc-day-bg {
+.container :global(.rbc-day-bg + .rbc-day-bg) {
   border-color: #f0effd;
 }
 
-.cal-container .rbc-month-row + .rbc-month-row {
+.container :global(.rbc-month-row + .rbc-month-row) {
   border-color: #f0effd;
 }
 
-.cal-container .rbc-month-row {
+.container :global(.rbc-month-row) {
   max-height: 35px;
 }
 
-.cal-container .rbc-today {
+.container :global(.rbc-today) {
   background-color: rgba(240, 239, 253, 0.5);
 }
 
-.cal-container .rbc-event-content {
+.container :global(.rbc-event-content) {
   font-size: 12px;
   background-color: #f0effd;
 }
 
-.cal-container .rbc-row-segment .rbc-event {
+.container :global(.rbc-row-segment .rbc-event) {
   border: 1px solid #735bf2;
   background-color: #f0effd;
   color: #735bf2;
