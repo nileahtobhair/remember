@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  width: 100%;
+  padding: 0px 0;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 550px;
+
+  h1 {
+    margin-bottom: 40px;
+  }
+
+  .calendar {
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    width: 450px;
+    border-radius: 8px;
+    padding: 25px 25px;
+    margin-bottom: 20px;
+    background-color: #fff;
+  }
+}

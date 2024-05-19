@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
 import parse from "date-fns/parse";
-// import { isBefore, startOfMonth, isAfter } from "date-fns";
 
 import defaultEvents from "../events";
 export const EventsContext = createContext(null);

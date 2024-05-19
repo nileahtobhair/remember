@@ -1,5 +1,5 @@
 import React from "react";
-import "./calendar.css";
+import styles from "./calendar.module.scss";
 
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 
@@ -35,23 +35,21 @@ let Basic = ({ localizer, events, date, onNavigate }) => (
   />
 );
 
-function EventCalendar({ events, onNavigate, date }) {
+function EventCalendar({ events, onNavigate, date, title, calendar }) {
   return (
-    <>
-      <div className="calendar--container">
-        <h4> Your events calendar </h4>
-        <div className="calendar-outline">
-          <div className="calendar">
-            <Basic
-              localizer={localizer}
-              events={events}
-              onNavigate={onNavigate}
-              date={date}
-            />
-          </div>
+    <div className={styles.container}>
+      {title && <h4> {title} </h4>}
+      <div className={styles.outline}>
+        <div className={styles.calendar}>
+          <Basic
+            localizer={localizer}
+            events={events}
+            onNavigate={onNavigate}
+            date={date}
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

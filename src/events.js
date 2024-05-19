@@ -7,18 +7,18 @@ const events = [
   {
     title: "Lou & Gav Wedding Anniversary 💍",
     allDay: true,
-    start: parse(`${currentYear}-01-01`, "yyyy-M-dd", new Date()),
-    end: parse(`${currentYear}-01-01`, "yyyy-M-dd", new Date()),
+    start: parse(`2025-01-01`, "yyyy-M-dd", new Date()),
+    end: parse(`2025-01-01`, "yyyy-M-dd", new Date()),
     recurring: true,
     id: 1
   },
   {
-    title: "Dad Spain trip 🌞",
+    title: "Niamh’s Birthday 🎂",
     allDay: true,
-    start: parse("2024-01-13", "yyyy-M-dd", new Date()),
-    end: parse("2024-01-16", "yyyy-M-dd", new Date()),
-    recurring: false,
-    id: 2
+    start: parse(`2025-02-18`, "yyyy-M-dd", new Date()),
+    end: parse(`2025-02-18`, "yyyy-M-dd", new Date()),
+    recurring: true,
+    id: 4
   },
   {
     title: "Lou’s Birthday 🎉",
@@ -28,15 +28,6 @@ const events = [
     recurring: true,
     id: 3
   },
-  {
-    title: "Niamh’s Birthday 🎂",
-    allDay: true,
-    start: parse(`${currentYear}-02-18`, "yyyy-M-dd", new Date()),
-    end: parse(`${currentYear}-02-18`, "yyyy-M-dd", new Date()),
-    recurring: true,
-    id: 4
-  },
-
   {
     title: "Sinead’s Birthday 🎂",
     allDay: true,

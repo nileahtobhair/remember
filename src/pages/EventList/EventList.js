@@ -5,7 +5,7 @@ import styles from "./event.module.css";
 
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
-import EventsList from "../../components/EventsList";
+// import EventsList from "../../components/EventsList";
 
 import { useEvents, useEventsDispatch } from "../../providers/events";
 

@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./event.module.css";
 
+import CalendarInfo from "../../components/CalendarInfo";
 import Button from "../../components/Button";
-import { useNavigate } from "react-router-dom";
-import EventsList from "../../components/EventsList";
 
 import { useEvents, useEventsDispatch } from "../../providers/events";
+import { useCalendars, useCalendarsDispatch } from "../../providers/calendars";
 
 const EventCreationView = () => {
+  const { calendarId } = useParams();
   const events = useEvents();
+  const calendars = useCalendars();
   const navigate = useNavigate();
   const dispatch = useEventsDispatch();
+  const calDispatch = useCalendarsDispatch();
   const today = new Date().toISOString().split("T")[0];
   const [event, setEvent] = useState({
     title: "",
@@ -19,22 +23,31 @@ const EventCreationView = () => {
     recurring: false,
     id: events.length + 1
   });
+
+  const calendar = calendars.find(cal => cal.id === parseInt(calendarId));
+
+  const onFormSubmit = e => {
+    e.preventDefault();
+    dispatch({
+      type: "added",
+      ...event
+    });
+    calDispatch({
+      type: "changed",
+      ...calendar,
+      eventIds: [...calendar.eventIds, event.id]
+    });
+    navigate(`/calendar/${calendar.id}`);
+  };
+
   return (
     <section className={`${styles.container}`}>
-      <EventsList onClick={() => null} />
+      <CalendarInfo calendar={calendar} edit={false} />
+
       <div className={`${styles.formContainer}`}>
-        <form
-          className={`${styles.form}`}
-          onSubmit={e => {
-            e.preventDefault();
-            dispatch({
-              type: "added",
-              ...event
-            });
-            navigate("/");
-          }}
-        >
-          <h4>Create your new event</h4>
+        <h4>Create your new event</h4>
+        <p>{`Event will be added to the ${calendar.title} calendar`} </p>
+        <form className={`${styles.form}`} onSubmit={onFormSubmit}>
           <label>Event title </label>
           <input
             type="text"

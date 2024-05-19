@@ -4,37 +4,46 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Header from "./components/Header";
-import Events from "./components/Events";
 import Footer from "./components/Footer";
 
 import EventView from "./pages/EventView";
 import EventEdit from "./pages/EventEdit";
 import EventList from "./pages/EventList";
+import CalendarList from "./pages/CalendarList";
+import CalendarPage from "./pages/CalendarView";
 import EventCreate from "./pages/EventCreation";
 
 import { EventsProvider } from "./providers/events";
+import { CalendarsProvider } from "./providers/calendars";
 
 function App() {
   return (
-    <EventsProvider>
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<IndexPage />}></Route>
-          <Route
-            exact
-            path="/event/new"
-            element={<EventCreationPage />}
-          ></Route>
-          <Route exact path="/event/:eventId" element={<EventPage />}></Route>
-          <Route
-            exact
-            path="/event/:eventId/edit"
-            element={<EventEditPage />}
-          />
-          <Route exact path="/events" element={<EventsPage />} />
-        </Routes>
-      </Router>
-    </EventsProvider>
+    <CalendarsProvider>
+      <EventsProvider>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<IndexPage />}></Route>
+            <Route
+              exact
+              path="/calendar/:calendarId"
+              element={<SingleCalendarPage />}
+            ></Route>
+            <Route
+              exact
+              path="/calendar/:calendarId/event/new"
+              element={<EventCreationPage />}
+            ></Route>
+            <Route exact path="/event/:eventId" element={<EventPage />}></Route>
+            <Route
+              exact
+              path="/event/:eventId/edit"
+              element={<EventEditPage />}
+            />
+            <Route exact path="/events" element={<EventsPage />} />
+          </Routes>
+        </Router>
+      </EventsProvider>
+    </CalendarsProvider>
   );
 }
 
@@ -42,7 +51,17 @@ const IndexPage = () => {
   return (
     <div className="App">
       <Header />
-      <Events />
+      <CalendarList />
+      <Footer />
+    </div>
+  );
+};
+
+const SingleCalendarPage = () => {
+  return (
+    <div className="App">
+      <Header />
+      <CalendarPage />
       <Footer />
     </div>
   );

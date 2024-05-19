@@ -21,16 +21,15 @@ const EventCreationView = () => {
 
   return (
     <section className={`${styles.container}`}>
-      {/* <EventsList onClick={() => null} /> */}
       <div className={`${styles.eventContainer}`}>
         {event && (
           <>
             <div className={`${styles.buttons}`}>
               <Button
                 type="link"
-                text={"Home"}
+                text={"Back"}
                 onClick={() => {
-                  navigate(`/`);
+                  navigate(-1);
                 }}
               />
               <div className={`${styles.editButtons}`}>
