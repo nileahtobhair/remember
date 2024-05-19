@@ -121,3 +121,25 @@
   color: #735bf2;
   margin-top: 3px;
 }
+
+@media only screen and (max-width: 599px) {
+  .container :global(.rbc-calendar) {
+    min-height: 380px;
+  }
+
+  .container :global(.rbc-btn-group) {
+    width: 100%;
+  }
+
+  .container :global(.rbc-btn-group > button:not(:first-child)) {
+    margin-left: 5px;
+  }
+
+  .container :global(.rbc-toolbar-label) {
+    margin: 10px 0;
+  }
+
+  .container :global(.rbc-toolbar) {
+    margin-bottom: 15px;
+  }
+}

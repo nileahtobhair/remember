@@ -47,7 +47,7 @@ const EventEditView = () => {
             navigate(link);
           }}
         >
-          <h4>Edit your event</h4>
+          <h1>Edit your event</h1>
           <label>Event title </label>
           <input
             type="text"
