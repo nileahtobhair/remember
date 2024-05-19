@@ -1,9 +1,10 @@
 import React from "react";
-import styles from "./info.module.scss";
-import { useParams, useNavigate } from "react-router-dom";
-import Button from "../Button";
-
 import format from "date-fns/format";
+import { useNavigate } from "react-router-dom";
+
+import styles from "./info.module.scss";
+
+import Button from "../Button";
 
 function CalendarInfo({ calendar, edit = true }) {
   const navigate = useNavigate();

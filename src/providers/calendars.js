@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from "react";
-import parse from "date-fns/parse";
 
 import defaultCalendars from "../calendars";
 export const CalendarsContext = createContext(null);
