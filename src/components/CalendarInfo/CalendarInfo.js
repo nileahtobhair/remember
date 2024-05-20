@@ -10,6 +10,7 @@ function CalendarInfo({ calendar, edit = true }) {
   const navigate = useNavigate();
   return (
     <div className={styles.calendarInfo}>
+      <span className={styles.heading}>active calendar</span>
       <h3>{`${calendar.title} Calendar`}</h3>
       <p className={styles.description}>{calendar.description}</p>
       <p>{`Created on ${format(calendar.createdAt, "dd MMM yyyy")}`}</p>

@@ -28,7 +28,7 @@
 .container :global(.rbc-header) {
   background-color: #f0effd;
   padding: 6px 6px;
-  color: #735bf2;
+  color: var(--primary-color);
   font-weight: 500;
   font-size: 10px;
 }
@@ -88,9 +88,9 @@
 }
 
 .container :global(.rbc-row-segment .rbc-event) {
-  border: 1px solid #735bf2;
+  border: 1px solid var(--primary-color);
   background-color: #f0effd;
-  color: #735bf2;
+  color: var(--primary-color);
   margin-top: -34px;
   height: 34px;
   opacity: 0.75;

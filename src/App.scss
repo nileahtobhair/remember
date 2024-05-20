@@ -46,6 +46,10 @@ h1 {
   font-size: 3.2rem;
 }
 
+h2 {
+  font-size: 2.8rem;
+}
+
 h4 {
   font-size: 2.2rem;
   margin: 20px 0;
@@ -71,16 +75,4 @@ input {
   font-size: 14px;
   border-radius: 8px;
   border: none;
-}
-
-@keyframes logoAnimation {
-  0% {
-    background-position: 0% 10%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }

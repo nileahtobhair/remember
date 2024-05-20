@@ -1,4 +1,5 @@
 import React from "react";
+import format from "date-fns/format";
 import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./event.module.scss";
@@ -22,49 +23,49 @@ const EventView = () => {
 
   return (
     <section className={`${styles.container}`}>
+      <div className={`${styles.buttons}`}>
+        <Button
+          type="link"
+          text={"Back"}
+          onClick={() => {
+            navigate(-1);
+          }}
+        />
+        <div className={`${styles.editButtons}`}>
+          <Button
+            type="primary"
+            text={"Edit"}
+            onClick={() => {
+              navigate(`/calendar/${calendar.id}/event/${event.id}/edit`);
+            }}
+          />
+          <Button
+            type="delete"
+            text={"Delete"}
+            onClick={() => {
+              dispatch({
+                type: "deleted",
+                id: event.id
+              });
+              navigate(`/`);
+            }}
+          />
+        </div>
+      </div>
+
       <CalendarInfo calendar={calendar} edit={false} />
       <div className={`${styles.eventContainer}`}>
         {event && (
-          <>
-            <div className={`${styles.buttons}`}>
-              <Button
-                type="link"
-                text={"Back"}
-                onClick={() => {
-                  navigate(-1);
-                }}
-              />
-              <div className={`${styles.editButtons}`}>
-                <Button
-                  type="primary"
-                  text={"Edit"}
-                  onClick={() => {
-                    navigate(`/calendar/${calendar.id}/event/${event.id}/edit`);
-                  }}
-                />
-                <Button
-                  type="delete"
-                  text={"Delete"}
-                  onClick={() => {
-                    dispatch({
-                      type: "deleted",
-                      id: event.id
-                    });
-                    navigate(`/`);
-                  }}
-                />
-              </div>
+          <div className={`${styles.eventContent}`}>
+            <div className={`${styles.text}`}>
+              <span>event</span>
+              <h2>{event.title}</h2>
+              <p>{format(event.start, "dd MMM yyyy")}</p>
             </div>
-            <div className={`${styles.eventContent}`}>
-              <div className={`${styles.calendar}`}>
-                <CalendarPreview event={event} />
-              </div>
-              <div className={`${styles.text}`}>
-                <h4>{event.title}</h4>
-                <p>{event.start.toString()}</p>
-              </div>
+            <div className={`${styles.calendar}`}>
+              <CalendarPreview event={event} />
             </div>
-          </>
+          </div>
         )}
       </div>
     </section>

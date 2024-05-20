@@ -1,7 +1,7 @@
 import React from "react";
 import format from "date-fns/format";
 import { useNavigate } from "react-router-dom";
-import { isFuture, isBefore, isEqual } from "date-fns";
+import { isFuture, isBefore } from "date-fns";
 
 import Button from "../Button";
 
@@ -27,27 +27,19 @@ const EventsList = ({ onClick, events = [], calendarId }) => {
         return (
           <div key={event.title} className={styles.event}>
             <div
-              onClick={() => onClick(event.start)}
-              className={styles.eventClickable}
-            >
-              <h6>{event.title}</h6>
-
-              {!isEqual(event.end, event.start) ? (
-                <p>
-                  {format(event.start, "dd MMM yyyy")} -{" "}
-                  {format(event.end, "dd MMM yyyy")}{" "}
-                </p>
-              ) : (
-                <p>{format(event.start, "dd MMM yyyy")} </p>
-              )}
-            </div>
-
-            <Button
               onClick={() => {
                 navigate(`/calendar/${calendarId}/event/${event.id}`);
               }}
+              className={styles.eventClickable}
+            >
+              <h6>{event.title}</h6>
+              <p>{format(event.start, "dd MMM yyyy")}</p>
+            </div>
+
+            <Button
+              onClick={() => onClick(event.start)}
               type="link"
-              text="More info..."
+              text="show on cal..."
             />
           </div>
         );

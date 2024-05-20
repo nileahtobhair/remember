@@ -9,7 +9,7 @@ function Header() {
   const navigate = useNavigate();
 
   const text =
-    "You are currently using an MVP. Any data changes will not be saved!";
+    "You are currently using a prototype. Any data changes will not be saved!";
 
   return (
     <>

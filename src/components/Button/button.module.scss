@@ -9,19 +9,19 @@
 }
 
 .primary {
-  background-color: #735bf2;
+  background-color: var(--primary-color);
   color: #fff;
 }
 
 .inverted {
-  border: 1px solid #735bf2;
-  color: #735bf2;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
   background-color: #fff;
 }
 
 .link {
   border: 1px solid transparent;
-  color: #735bf2;
+  color: var(--primary-color);
   background-color: transparent;
   text-decoration: underline;
   text-align: left;

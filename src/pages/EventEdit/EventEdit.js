@@ -5,7 +5,6 @@ import styles from "./event.module.scss";
 
 import Button from "../../components/Button";
 import CalendarInfo from "../../components/CalendarInfo";
-// import EventsList from "../../components/EventsList";
 
 import { useEvents, useEventsDispatch } from "../../providers/events";
 import { useCalendars } from "../../providers/calendars";
@@ -33,9 +32,15 @@ const EventEditView = () => {
   const link = `/calender/${calendar.id}/event/${event.id}`;
   return (
     <section className={`${styles.container}`}>
-      <Button type="link" text={"Back"} onClick={e => navigate(link)} />
+      <div className={`${styles.buttons}`}>
+        <Button type="link" text={"Back"} onClick={e => navigate(link)} />
+      </div>
       <CalendarInfo calendar={calendar} edit={false} />
       <div className={`${styles.formContainer}`}>
+        <div className={styles.info}>
+          <h1>Edit your event</h1>
+          <p>Update your event details</p>
+        </div>
         <form
           className={`${styles.form}`}
           onSubmit={e => {
@@ -47,7 +52,6 @@ const EventEditView = () => {
             navigate(link);
           }}
         >
-          <h1>Edit your event</h1>
           <label>Event title </label>
           <input
             type="text"
@@ -63,14 +67,18 @@ const EventEditView = () => {
             min={today}
             onChange={e => setEvent({ ...event, date: e.target.value })}
           />
-          <label>Recurring event? </label>
-          <input
-            type="checkbox"
-            id="start"
-            name="event-recurring"
-            value={event.recurring}
-            onChange={e => setEvent({ ...event, recurring: !!e.target.value })}
-          />
+          <div className={styles.checkbox}>
+            <label>Recurring event? </label>
+            <input
+              type="checkbox"
+              id="start"
+              name="event-recurring"
+              value={event.recurring}
+              onChange={e =>
+                setEvent({ ...event, recurring: !!e.target.value })
+              }
+            />
+          </div>
           <Button
             className={`${styles.button}`}
             type="primary"

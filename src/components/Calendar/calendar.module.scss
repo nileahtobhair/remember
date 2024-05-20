@@ -42,15 +42,15 @@
 :global(.rbc-btn-group > button:not(:first-child):not(:last-child)),
 :global(.rbc-btn-group > button:first-child:not(:last-child)),
 :global(.rbc-btn-group button) {
-  border: 1px solid #735bf2;
-  color: #735bf2;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
   border-radius: 4px;
 }
 
 :global(button.rbc-active),
 :global(.rbc-btn-group button.rbc-active) {
-  border: 1px solid #735bf2;
-  background-color: #735bf2 !important;
+  border: 1px solid var(--primary-color);
+  background-color: var(--primary-color) !important;
   color: white !important;
   border-radius: 4px;
 }
@@ -62,7 +62,7 @@
 .container :global(.rbc-header) {
   background-color: #f0effd;
   padding: 8px 12px;
-  color: #735bf2;
+  color: var(--primary-color);
   font-weight: 500;
   font-size: 12px;
 }
@@ -116,10 +116,14 @@
 }
 
 .container :global(.rbc-row-segment .rbc-event) {
-  border: 1px solid #735bf2;
+  border: 1px solid var(--primary-color);
   background-color: #f0effd;
-  color: #735bf2;
+  color: var(--primary-color);
   margin-top: 3px;
+}
+
+.container :global(.rbc-btn-group > button:not(:first-child)) {
+  margin-left: 5px;
 }
 
 @media only screen and (max-width: 599px) {

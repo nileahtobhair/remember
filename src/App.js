@@ -18,26 +18,26 @@ import { CalendarsProvider } from "./providers/calendars";
 
 function App() {
   return (
-    <CalendarsProvider>
-      <EventsProvider>
-        <Router>
+    <Router>
+      <CalendarsProvider>
+        <EventsProvider>
           <Routes>
-            <Route exact path="/" element={<IndexPage />}></Route>
+            <Route exact path="/" element={<IndexPage />} />
             <Route
               exact
               path="/calendar/:calendarId"
               element={<SingleCalendarPage />}
-            ></Route>
-            <Route
-              exact
-              path="/calendar/:calendarId/event/new"
-              element={<EventCreationPage />}
-            ></Route>
+            />
             <Route
               exact
               path="/calendar/:calendarId/event/:eventId"
               element={<EventPage />}
-            ></Route>
+            />
+            <Route
+              exact
+              path="/calendar/:calendarId/event/new"
+              element={<EventCreationPage />}
+            />
             <Route
               exact
               path="/calendar/:calendarId/event/:eventId/edit"
@@ -45,9 +45,9 @@ function App() {
             />
             <Route exact path="/events" element={<EventsPage />} />
           </Routes>
-        </Router>
-      </EventsProvider>
-    </CalendarsProvider>
+        </EventsProvider>
+      </CalendarsProvider>
+    </Router>
   );
 }
 
