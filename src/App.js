@@ -1,5 +1,10 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation
+} from "react-router-dom";
 
 import "./App.scss";
 
@@ -16,35 +21,48 @@ import EventCreate from "./pages/EventCreation";
 import { EventsProvider } from "./providers/events";
 import { CalendarsProvider } from "./providers/calendars";
 
+const Scroll = ({ children }) => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    document.documentElement.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant"
+    });
+  }, [pathname]);
+  return children;
+};
+
 function App() {
   return (
     <Router>
       <CalendarsProvider>
         <EventsProvider>
-          <Routes>
-            <Route exact path="/" element={<IndexPage />} />
-            <Route
-              exact
-              path="/calendar/:calendarId"
-              element={<SingleCalendarPage />}
-            />
-            <Route
-              exact
-              path="/calendar/:calendarId/event/:eventId"
-              element={<EventPage />}
-            />
-            <Route
-              exact
-              path="/calendar/:calendarId/event/new"
-              element={<EventCreationPage />}
-            />
-            <Route
-              exact
-              path="/calendar/:calendarId/event/:eventId/edit"
-              element={<EventEditPage />}
-            />
-            <Route exact path="/events" element={<EventsPage />} />
-          </Routes>
+          <Scroll>
+            <Routes>
+              <Route exact path="/" element={<IndexPage />} />
+              <Route
+                exact
+                path="/calendar/:calendarId"
+                element={<SingleCalendarPage />}
+              />
+              <Route
+                exact
+                path="/calendar/:calendarId/event/:eventId"
+                element={<EventPage />}
+              />
+              <Route
+                exact
+                path="/calendar/:calendarId/event/:eventId/edit"
+                element={<EventEditPage />}
+              />
+              <Route
+                exact
+                path="/calendar/:calendarId/event/new"
+                element={<EventCreationPage />}
+              />
+            </Routes>
+          </Scroll>
         </EventsProvider>
       </CalendarsProvider>
     </Router>

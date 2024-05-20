@@ -8,6 +8,11 @@
   align-items: center;
   flex-direction: column;
 
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
+
   ul {
     display: flex;
     width: 90%;
@@ -15,6 +20,7 @@
     flex-direction: column;
     font-family: "Fraunces", serif;
   }
+
   ul li {
     margin: 5px 0;
   }

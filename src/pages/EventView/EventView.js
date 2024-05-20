@@ -27,9 +27,7 @@ const EventView = () => {
         <Button
           type="link"
           text={"Back"}
-          onClick={() => {
-            navigate(-1);
-          }}
+          onClick={() => navigate(`/calendar/${calendar.id}`)}
         />
         <div className={`${styles.editButtons}`}>
           <Button
@@ -47,7 +45,7 @@ const EventView = () => {
                 type: "deleted",
                 id: event.id
               });
-              navigate(`/`);
+              navigate(`/calendar/${calendar.id}`);
             }}
           />
         </div>

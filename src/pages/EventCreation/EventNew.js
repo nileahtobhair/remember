@@ -42,6 +42,9 @@ const EventCreationView = () => {
 
   return (
     <section className={`${styles.container}`}>
+      <div className={`${styles.back}`}>
+        <Button type="link" text={"Back"} onClick={e => navigate(-1)} />
+      </div>
       <CalendarInfo calendar={calendar} edit={false} />
 
       <div className={`${styles.formContainer}`}>

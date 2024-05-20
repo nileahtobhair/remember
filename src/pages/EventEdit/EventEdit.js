@@ -6,8 +6,8 @@ import styles from "./event.module.scss";
 import Button from "../../components/Button";
 import CalendarInfo from "../../components/CalendarInfo";
 
-import { useEvents, useEventsDispatch } from "../../providers/events";
 import { useCalendars } from "../../providers/calendars";
+import { useEvents, useEventsDispatch } from "../../providers/events";
 
 const EventEditView = () => {
   const events = useEvents();
@@ -29,7 +29,7 @@ const EventEditView = () => {
 
   const calendar = calendars.find(cal => cal.id === parseInt(calendarId));
 
-  const link = `/calender/${calendar.id}/event/${event.id}`;
+  const link = `/calendar/${calendar.id}/event/${event.id}`;
   return (
     <section className={`${styles.container}`}>
       <div className={`${styles.buttons}`}>

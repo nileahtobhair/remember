@@ -1,8 +1,9 @@
 .container {
   display: flex;
-  width: 90%;
+  max-width: 90%;
+  width: 1090px;
   margin-bottom: 20px;
-  padding: 20px 0;
+  padding: 0px 0;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;

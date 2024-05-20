@@ -20,18 +20,19 @@ const EventListView = () => {
           className={styles.button}
           onClick={() => navigate(`/`)}
         />
-        {events.map(event => {
-          return (
-            <div
-              key={event.id}
-              className={styles.event}
-              onClick={() => navigate(`/event/${event.id}`)}
-            >
-              <h5>{event.title}</h5>
-              <p>{event.start.toString()}</p>
-            </div>
-          );
-        })}
+        {events &&
+          events.map(event => {
+            return (
+              <div
+                key={event.id}
+                className={styles.event}
+                onClick={() => navigate(`/event/${event.id}`)}
+              >
+                <h5>{event.title}</h5>
+                <p>{event.start.toString()}</p>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

@@ -1,7 +1,8 @@
 .container {
   display: flex;
-  width: 90%;
-  padding: 20px 0;
+  max-width: 90%;
+  width: 1090px;
+  padding: 0px 0 20px 0;
   flex-direction: column;
   justify-content: space-between;
 
@@ -12,9 +13,17 @@
     margin-top: 20px;
     margin-bottom: 40px;
   }
+
+  .back {
+    margin-bottom: 20px;
+    text-align: left;
+  }
 }
 
 .formContainer {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;

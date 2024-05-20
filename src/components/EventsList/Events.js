@@ -44,6 +44,18 @@ const EventsList = ({ onClick, events = [], calendarId }) => {
           </div>
         );
       })}
+
+      {filtered.length === 0 && (
+        <div className={styles.empty}>
+          <h6>{"There are no events to show"}</h6>
+          <p>{"click below to create a new event for this calendar"}</p>
+          <Button
+            onClick={() => navigate(`/calendar/${calendarId}/event/new`)}
+            type="primary"
+            text="Create event"
+          />
+        </div>
+      )}
     </section>
   );
 };

@@ -33,6 +33,24 @@
     }
   }
 
+  .empty {
+    border-radius: 8px;
+    padding: 25px 15px;
+    background-color: #fff;
+    margin-top: 16px;
+    margin: 8px 4px 26px 0px;
+    text-align: center;
+
+    h6 {
+      font-size: 2rem;
+      margin: 4px;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+
   .eventClickable {
     cursor: pointer;
   }

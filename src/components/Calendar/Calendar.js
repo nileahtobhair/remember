@@ -38,7 +38,7 @@ let Basic = ({ localizer, events, date, onNavigate }) => (
 function EventCalendar({ events, onNavigate, date, title, calendar }) {
   return (
     <div className={styles.container}>
-      {title && <h4> {title} </h4>}
+      {title && <h1> {title} </h1>}
       <div className={styles.outline}>
         <div className={styles.calendar}>
           <Basic
