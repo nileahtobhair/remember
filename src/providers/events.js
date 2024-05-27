@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import parse from "date-fns/parse";
 
-import defaultEvents from "../events";
+import defaultEvents from "../data/events";
 export const EventsContext = createContext(null);
 export const EventsDispatchContext = createContext(null);
 
@@ -16,17 +16,6 @@ export function EventsProvider({ children }) {
     </EventsContext.Provider>
   );
 }
-
-// const orderEvents = eventsList => {
-//   const filtered = eventsList
-//     .filter(event => {
-//       return isAfter(event.end, startOfMonth(new Date())) || event.recurring;
-//     })
-//     .sort((a, b) => {
-//       return isBefore(b.start, a.start) ? 1 : -1;
-//     });
-//   return filtered;
-// };
 
 function eventsReducer(events, action) {
   switch (action.type) {

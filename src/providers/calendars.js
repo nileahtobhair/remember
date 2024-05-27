@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 
-import defaultCalendars from "../calendars";
+import defaultCalendars from "../data/calendars";
 export const CalendarsContext = createContext(null);
 export const CalendarsDispatchContext = createContext(null);
 

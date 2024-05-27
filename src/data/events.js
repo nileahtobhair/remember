@@ -107,6 +107,35 @@ const events = [
     end: parse(`${currentYear}-08-19`, "yyyy-M-dd", new Date()),
     recurring: true,
     id: 14
+  },
+  {
+    title: "Reception drinks",
+    allDay: false,
+    start: parse(`${currentYear}-08-16`, "yyyy-M-dd", new Date()),
+    end: parse(`${currentYear}-08-16`, "yyyy-M-dd", new Date()),
+    recurring: false,
+    id: 15
+  },
+  {
+    title: "Chapel Ceremony",
+    allDay: false,
+    start: parse(`${currentYear}-08-17`, "yyyy-M-dd", new Date()),
+    end: parse(`${currentYear}-08-17`, "yyyy-M-dd", new Date()),
+    id: 16
+  },
+  {
+    title: "Afters",
+    allDay: false,
+    start: parse(`${currentYear}-08-17`, "yyyy-M-dd", new Date()),
+    end: parse(`${currentYear}-08-17`, "yyyy-M-dd", new Date()),
+    id: 17
+  },
+  {
+    title: "Goodbye brunch",
+    allDay: false,
+    start: parse(`${currentYear}-08-18`, "yyyy-M-dd", new Date()),
+    end: parse(`${currentYear}-08-18`, "yyyy-M-dd", new Date()),
+    id: 18
   }
 ];
 

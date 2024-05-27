@@ -2,6 +2,16 @@
 
 Bootstrapped with create-react-app. React front-end for the remember app, an app to store and get notified of all your important dates.
 
+## Roadmap
+
+1. Error boundary + simple 404 page - simple 404 page with simple link back to home
+2. Add time input to date creation
+3. Timezone handling - allow user to select timezone when creating event. show event in local timezone when viewing single event (with indication to user that it is single event).
+4. CRUD functionality for calendars.
+5. Basic hook up to api.
+6. register + signin functionality.
+7. Improve recurring events handling.
+
 ## Scripts
 
 ### `npm start`

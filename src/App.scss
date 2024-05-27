@@ -12,6 +12,14 @@
   align-items: center;
   font-family: "Inter", sans-serif;
   background-color: #f9f9f9;
+
+  &.error {
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 html,
